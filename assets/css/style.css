@@ -3,17 +3,48 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-color: #f4f4f4;
 }
 
 /* Formatting for the header */
+.profile a img {
+  width: 236px !important;
+  height: 236px !important;
+}
 
+.profile a span {
+  font-size: 29px !important;
+  line-height: unset !important;
+}
 
+nav.navbar {
+  padding: 0 20px;
+}
+
+.sidenav .collapsible-header, .sidenav.fixed .collapsible-header {
+  padding: 0 32px;
+}
+
+.sidenav .collapsible .active .collapsible-header .chevron {
+  transform: rotate(
+    90deg
+  );
+}
+
+.fab-icon {
+  font-size: 23px;
+}
 
 /* Formatting for the main content */
-
+main .container {
+  margin-top: 20px;
+}
 
 
 /* Formatting for changes in screen size */
-@media only screen and (max-width: 575px) {
-
+@media only screen and (min-width: 993px) {
+  .has-fixed-sidenav .navbar-fixed {
+    width: calc(100% - 300px);
+    left: 300px;
+  }
 }
