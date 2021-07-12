@@ -1,5 +1,5 @@
 // ------------- Assignment Code -------------
-
+const githubUsername = "avidrunner87";
 
 // ---------------- Functions ----------------
 // Run on web page load
@@ -185,7 +185,7 @@ function renderHeader() {
     let $sideNavBarNetworkDivGithubLI = $("<li>");
 
     let $sideNavBarNetworkDivGithubA = $("<a>");
-    $sideNavBarNetworkDivGithubA.attr("href", "https://github.com/avidrunner87");
+    $sideNavBarNetworkDivGithubA.attr("href", `https://github.com/${githubUsername}`);
     $sideNavBarNetworkDivGithubA.attr("target", "_blank");
     $sideNavBarNetworkDivGithubA.addClass("waves-effect");
     $sideNavBarNetworkDivGithubA.text("Github");
@@ -317,9 +317,10 @@ function renderPortfolio() {
     let dataRepos = [];
 
     // Get Github Pinned Repos
-    let requestUrl = "https://gh-pinned-repos-5l2i19um3.vercel.app/?username=avidrunner87";
+    let requestUrl = `https://gh-pinned-repos-5l2i19um3.vercel.app/?username=${githubUsername}`;
 
     fetch(requestUrl)
+    .then(handleAPIErrors)
     .then(function (response) {
         return response.json();
     })
@@ -329,6 +330,7 @@ function renderPortfolio() {
             requestUrl = `https://api.github.com/repos/avidrunner87/${repo.repo}`;
 
             fetch(requestUrl)
+            .then(handleAPIErrors)
             .then(function (response) {
                 return response.json();
             })
@@ -342,28 +344,44 @@ function renderPortfolio() {
                 }
                 dataRepos.push(newEntry);
             })
-        });
-
-        // Sort the repos by date created
-        dataRepos.sort((a, b) => (a.created_at > b.created_at) ? 1 : -1);
-        // dataRepos.reverse();
-        console.log(dataRepos);
-        dataRepos.forEach(repo => {
-            console.log(repo.created_at);
-        });
-
-        dataRepos.forEach(repo => {
-            let $repoDiv = $("<div>");
-            $repoDiv.addClass("row");
-
-            let $repoColCreated = $("<div>");
-            $repoColCreated.addClass("col s1 grey-text text-italic");
-            $repoColCreated.text(dayjs(data.created_at).format("YYYY MMM").toUpperCase());
-
-            $repoDiv.append($repoColCreated);
-            $(".mainContent").append($repoDiv);
+            .catch(function(error) {
+                console.log(error);
+            })
         });
     })
+    .then(function() {
+        console.log(dataRepos.length);
+    })
+    .catch(function(error) {
+        console.log(error);
+    })
+
+    
+    // Sort the repos by date created
+    // dataRepos.sort((a, b) => (a.created_at > b.created_at) ? 1 : -1);
+    // dataRepos.reverse();
+    // console.log(dataRepos);
+
+    // for (let i = 0; i < dataRepos.length; i++) {
+    //     console.log(dataRepos[i].created_at);
+
+    //     let $repoDiv = $("<div>");
+    //     $repoDiv.addClass("row");
+
+    //     let $repoColCreated = $("<div>");
+    //     $repoColCreated.addClass("col s1 grey-text text-italic");
+    //     $repoColCreated.text(dayjs(dataRepos[i].created_at).format("YYYY MMM").toUpperCase());
+
+    //     $repoDiv.append($repoColCreated);
+    //     $(".mainContent").append($repoDiv);  
+    // } 
+}
+
+function handleAPIErrors(response) {
+    if (!response.ok) {
+        M.toast({html: `${response.status} error occurred. Please see the console for more information.`});
+    }
+    return response;
 }
 
 function testGitHubAPIs() {
