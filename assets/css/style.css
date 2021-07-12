@@ -36,8 +36,12 @@ nav.navbar {
 }
 
 /* Formatting for the main content */
-main .container {
-  margin-top: 20px;
+main .mainContent {
+  margin: 20px;
+}
+
+.text-italic {
+  font-style: italic;
 }
 
 
