@@ -227,11 +227,20 @@ function renderPortfolio() {
 
             $timePrjDivOvw.append($timePrjDivOvwDivTopic);
 
+            let $timePrjDivGit = $("<a>");
+            $timePrjDivGit.attr("href", repo.html_url);
+            $timePrjDivGit.attr("target", "_blank");
+            $timePrjDivGit.addClass("btn-flat");
+            $timePrjDivGit.text("Visit Github Repo");
+
+            $timePrjDivOvw.append($timePrjDivGit);
+
             // Append the details to the project list item
             $timePrjDivDtls.append($timePrjDivOvw);
 
+
             let $timePrjDivImgs = $("<div>");
-            $timePrjDivImgs.addClass("col s12 l6 timelineProjectImages");
+            $timePrjDivImgs.addClass("col s12 l7 timelineProjectImages");
 
             let $timePrjImgO = $("<img>");
             $timePrjImgO.addClass("responsive-img");
