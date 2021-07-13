@@ -7,6 +7,28 @@ body {
 }
 
 /* Formatting for the header */
+.nav-background {
+  background-image: url("../images/nav-background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.nav-background img {
+  margin: 20px;
+  position: relative;
+  left: calc(50% - 120px);
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.nav-background p {
+  position: relative;
+  left: calc(50% - 4em);
+  margin: unset;
+  font-size: 26px !important;
+  line-height: 40px !important;
+}
+
 .profile a img {
   width: 236px !important;
   height: 236px !important;
@@ -17,8 +39,16 @@ body {
   line-height: unset !important;
 }
 
+.navbar-overlay {
+  z-index: 1000 !important;
+}
+
 nav.navbar {
   padding: 0 20px;
+}
+
+#sideNavLeft {
+  z-index: 1001 !important;
 }
 
 .sidenav .collapsible-header, .sidenav.fixed .collapsible-header {
@@ -36,7 +66,7 @@ nav.navbar {
 }
 
 /* Formatting for the main content */
-main .mainContent {
+main .mainContent .portfolioTimeline{
   margin: 20px;
 }
 
@@ -44,11 +74,74 @@ main .mainContent {
   font-style: italic;
 }
 
+.portfolioTimeline .row {
+  margin-bottom: unset;
+}
+
+.app-launch {
+  float: right;
+}
+
+.portfolioTimeline .divider {
+  border-top: gray 1px solid;
+  margin: 25px;
+}
+
+.timelineProjectTopics{
+  margin: 10px 0;
+}
+span.badge {
+  margin-left: unset;
+  margin-right: 6px;
+  float: unset;
+  padding: 3px 10px;
+  border-radius: 9999rem;
+}
+
 
 /* Formatting for changes in screen size */
-@media only screen and (min-width: 993px) {
+
+/* Change screen when small or smaller */
+@media screen and (max-width: 600px) {
+  .timelineProjectDate {
+    border-right: unset;
+  }
+}
+
+/* Change appearance of portfolio timeline with screen size */
+@media screen and (min-width: 600px) {
+  .timelineProjectDate:after {
+    content: " ";
+    position: relative;
+    top: -10px;
+    left: calc(100% + .75rem);
+    margin-left: -3.5px;
+    display: block;
+    width: 7px;
+    height: 7px;
+    background-color: gray;
+  }
+
+  .timelineProjectDetails {
+    border-left: 1px gray solid;
+  }
+}
+
+/* Change screen when large or greater */
+@media screen and (min-width: 993px) {
   .has-fixed-sidenav .navbar-fixed {
     width: calc(100% - 300px);
     left: 300px;
+  }
+
+  .nav-background {
+    display: none;
+  }
+}
+
+/* Change screen when medium or smaller */
+@media screen and (max-width: 992px) {
+  .profile {
+    display: none;
   }
 }

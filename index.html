@@ -17,9 +17,161 @@
         <link rel="stylesheet" href="./assets/css/style.css" />
 
     </head>
-    <body>
-        <header></header>
-        <main><div class="navbar-fixed" style="margin: 20px;">This page requires Javascript to render the content. Please allow Javascript to run on your device or computer.</div></main>
+    <body class="has-fixed-sidenav">
+        <header>
+            <div class="navbar-fixed navbar-overlay">
+                <nav class="navbar white">
+                    <div class="nav-wrapper">
+                        <a href="#!" id="pageTitle" class="brand-logo grey-text text-darken-4">Home</a>
+                        <a href="#!" class="sidenav-trigger left" data-target="sideNavLeft">
+                            <i class="material-icons black-text">menu</i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="nav-background">
+                <img src="assets/images/personal-image.jpg" class="circle profileImage center-align" />
+                <p><span class="white-text">Andrew Ronchetto</span></p>
+            </div>
+            <ul id="sideNavLeft" class="sidenav sidenav-fixed">
+                <li>
+                    <div class="user-view profile">
+                        <div class="background">
+                            <img src="assets/images/nav-background.jpg" />
+                        </div>
+                        <a href="!#">
+                            <img src="assets/images/personal-image.jpg" class="circle profileImage" />
+                        </a>
+                        <a href="!#">
+                            <span class="white-text name">
+                                Andrew Ronchetto
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#home" id="home" class="waves-effect" tabindex="0">
+                        Home
+                        <i class="material-icons left">home</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" id="about" class="waves-effect" tabindex="0">
+                        About
+                        <i class="material-icons left">person</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#portfolio" id="portfolio" class="waves-effect" tabindex="0">
+                        Portfolio
+                        <i class="material-icons left">apps</i>
+                    </a>
+                </li>
+                <li>
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header waves-effect">
+                                Network
+                                <i class="material-icons left chevron">chevron_right</i>
+                            </a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li>
+                                        <a href="https://www.linkedin.com/in/andrewronchetto" class="waves-effect" target="_blank">
+                                            LinkedIn
+                                            <i class="fab fa-linkedin-in fab-icon"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/avidrunner87" class="waves-effect" target="_blank">
+                                            Github
+                                            <i class="fab fa-github fab-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header waves-effect">
+                                Contact
+                                <i class="material-icons left chevron">chevron_right</i>
+                            </a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li>
+                                        <a href="mailto:andrew.ronchetto@me.com" class="waves-effect" target="_blank">
+                                            Email Me
+                                            <i class="material-icons left">email</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+18322698051" class="waves-effect" target="_blank">
+                                            Call Me
+                                            <i class="material-icons left">phone_iphone</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
+        <main>
+            <div class="navbar-fixed messageJavascript" style="margin: 20px;">This page requires Javascript to render the content. Please allow Javascript to run on your device or computer.</div>
+            <div class="navbar-fixed portfolioTimeline">
+                <ul>
+                    <li class="timelineProject no-padding">
+                        <div class="row">
+                            <div class="col s12 m1 timelineProjectDate">2021 JUN</div>
+                            <div class="col row s12 m11 timelineProjectDetails">
+                                <div class="col s12 m5 timelineProjectOverview">
+                                    <h5>
+                                        Small Talk
+                                        <a class="waves-effect waves-light btn-small app-launch"><i class="material-icons left">launch</i>Launch</a>
+                                    </h5>
+                                    <p>This is a description of the application. It should be short, but clear.</p>
+                                    <div class="timelineProjectTopics">
+                                        <span class="badge blue white-text">html</span>
+                                        <span class="badge blue white-text">css</span>
+                                        <span class="badge blue white-text">javascript</span>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6 timelineProjectImages">
+                                    <img src="https://avidrunner87.github.io/small-talk/assets/images/website_mockup.gif" style="width: 100%;"/>
+                                </div>
+                                <div class="col s12 m12 divider"></div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="timelineProject no-padding">
+                        <div class="row">
+                            <div class="col s12 m1 timelineProjectDate">2021 JUN</div>
+                            <div class="col row s12 m11 timelineProjectDetails">
+                                <div class="col s12 m5 timelineProjectOverview">
+                                    <h5>Small Talk</h5>
+                                    <p>This is a description of the application. It should be short, but clear.</p>
+                                    <div class="timelineProjectTopics">
+                                        <span class="badge blue white-text">html</span>
+                                        <span class="badge blue white-text">css</span>
+                                        <span class="badge blue white-text">javascript</span>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6 timelineProjectImages">
+                                    <img src="https://avidrunner87.github.io/small-talk/assets/images/website_mockup.gif" style="width: 100%;"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
         <footer></footer>
 
         <!-- Links to 3rd Party Scripts -->
