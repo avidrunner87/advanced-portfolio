@@ -35,4 +35,8 @@ You can access the website [here]().
 [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)<br>
 [W3 Schools](https://www.w3schools.com/)<br>
 [jQuery](https://jquery.com)<br>
-[jQueryUI](https://jqueryui.com)
+[jQueryUI](https://jqueryui.com)<br>
+[freeCodeCamp](https://www.freecodecamp.org/news/three-ways-to-title-case-a-sentence-in-javascript-676a9175eb27/);
+
+## Inspiration
+[jtom.me](https://jtom.me/portfolio/)
