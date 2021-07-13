@@ -80,121 +80,233 @@ function renderPortfolio() {
 
     let $portTimelineUl = $("<ul>");
 
-    // Get Github Pinned Repos
-    let requestUrl = `https://gh-pinned-repos-5l2i19um3.vercel.app/?username=${githubUsername}`;
+    async function getAPIData() {
+        let requestUrl = `https://gh-pinned-repos-5l2i19um3.vercel.app/?username=${githubUsername}`;
+        let userData = [];
+        let repoData = [];
+        let topicData = [];
 
-    fetch(requestUrl)
-    .then(handleAPIErrors)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (userData) {
-        userData.forEach(repo => {
-            // Get Github Repo Details
+        async function getUserData(requestUrl) {
+            // read our JSON
+            let response = await fetch(requestUrl);
+            userData = await response.json();
+        }
+
+        async function getRepoData(requestUrl) {
+            // read our JSON
+            let response = await fetch(requestUrl);
+            repoData = await response.json();
+        }
+
+        async function getTopicData(requestUrl) {
+            // read our JSON
+            let response = await fetch(requestUrl, {
+                headers: {
+                    "Accept": "application/vnd.github.mercy-preview+json"
+                }
+            })
+
+            topicData = await response.json();
+        }
+
+        await getUserData(requestUrl);
+        console.log(userData);
+
+        for (let repo of userData) {
             requestUrl = `https://api.github.com/repos/avidrunner87/${repo.repo}`;
 
-            fetch(requestUrl)
-            .then(handleAPIErrors)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (repoData) {
-                console.log(repoData);
+            await getRepoData(requestUrl);
+            console.log(repoData);
 
-                let $timePrjLi = $("<li>");
-                $timePrjLi.addClass("timelineProject no-padding");
+            let $timePrjLi = $("<li>");
+            $timePrjLi.addClass("timelineProject no-padding");
 
-                let $timePrjDiv = $("<div>");
-                $timePrjDiv.addClass("row");
+            let $timePrjDiv = $("<div>");
+            $timePrjDiv.addClass("row");
 
-                let $timePrjDivDate = $("<div>");
-                $timePrjDivDate.addClass("col s12 l1 timelineProjectDate");
-                $timePrjDivDate.text(dayjs(repoData.created_at).format("YYYY MMM").toUpperCase());
+            let $timePrjDivDate = $("<div>");
+            $timePrjDivDate.addClass("col s12 l1 timelineProjectDate");
+            $timePrjDivDate.text(dayjs(repoData.created_at).format("YYYY MMM").toUpperCase());
 
-                $timePrjDiv.append($timePrjDivDate);
+            $timePrjDiv.append($timePrjDivDate);
 
-                let $timePrjDivDtls = $("<div>");
-                $timePrjDivDtls.addClass("col row s12 l11 timelineProjectDetails");
+            let $timePrjDivDtls = $("<div>");
+            $timePrjDivDtls.addClass("col row s12 l11 timelineProjectDetails");
 
-                let $timePrjDivOvw = $("<div>");
-                $timePrjDivOvw.addClass("col s12 l5 timelineProjectOverview");
+            let $timePrjDivOvw = $("<div>");
+            $timePrjDivOvw.addClass("col s12 l5 timelineProjectOverview");
 
-                let $timePrjDivOvwTitle = $("<h5>");
-                $timePrjDivOvwTitle.append(titleCase(repoData.name));
+            let $timePrjDivOvwTitle = $("<h5>");
+            $timePrjDivOvwTitle.append(titleCase(repoData.name));
 
-                let $timePrjDivOvwAppA = $("<a>");
-                $timePrjDivOvwAppA.addClass("waves-effect waves-light btn-small app-launch");
-                $timePrjDivOvwAppA.text("Launch App");
+            let $timePrjDivOvwAppA = $("<a>");
+            $timePrjDivOvwAppA.attr("href", repoData.homepage);
+            $timePrjDivOvwAppA.attr("target", "_blank");
+            $timePrjDivOvwAppA.addClass("waves-effect waves-light btn-small app-launch");
+            $timePrjDivOvwAppA.text("Launch App");
 
-                let $timePrjDivOvwAppI = $("<i>");
-                $timePrjDivOvwAppI.addClass("material-icons left");
-                $timePrjDivOvwAppI.text("launch");
-                
-                $timePrjDivOvwAppA.append($timePrjDivOvwAppI);
-                $timePrjDivOvwTitle.append($timePrjDivOvwAppA);
+            let $timePrjDivOvwAppI = $("<i>");
+            $timePrjDivOvwAppI.addClass("material-icons left");
+            $timePrjDivOvwAppI.text("launch");
+            
+            $timePrjDivOvwAppA.append($timePrjDivOvwAppI);
+            $timePrjDivOvwTitle.append($timePrjDivOvwAppA);
 
-                let $timePrjDivOvwDes = $("<p>");
-                $timePrjDivOvwDes.text(repoData.description);
+            let $timePrjDivOvwDes = $("<p>");
+            $timePrjDivOvwDes.text(repoData.description);
 
-                $timePrjDivOvw.append($timePrjDivOvwTitle);
-                $timePrjDivOvw.append($timePrjDivOvwDes);
+            $timePrjDivOvw.append($timePrjDivOvwTitle);
+            $timePrjDivOvw.append($timePrjDivOvwDes);
 
-                let $timePrjDivOvwDivTopic = $("<div>");
-                $timePrjDivOvwDivTopic.addClass("timelineProjectTopics");
+            let $timePrjDivOvwDivTopic = $("<div>");
+            $timePrjDivOvwDivTopic.addClass("timelineProjectTopics");
 
-                // Get Github Repo Topics Content
-                requestUrl = `https://api.github.com/repos/avidrunner87/${repoData.name}/topics`;
-
-                fetch(requestUrl, {
-                    headers: {
-                        "Accept": "application/vnd.github.mercy-preview+json"
-                    }
-                })
-                .then(handleAPIErrors)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (topicData) {
-                    console.log(topicData);
-
-                    topicData.names.forEach(topic => {
-                        let $timePrjDivOvwTopicS = $("<span>");
-                        $timePrjDivOvwTopicS.addClass("badge blue white-text");
-                        $timePrjDivOvwTopicS.text(topic);
-                        $timePrjDivOvwDivTopic.append($timePrjDivOvwTopicS);
-                    });
-                })
-                .then( function() {
-                    $timePrjDivOvw.append($timePrjDivOvwDivTopic);
-
-                    // Append the details to the project list item
+            // Get Github Repo Topics Content
+            requestUrl = `https://api.github.com/repos/avidrunner87/${repoData.name}/topics`;
     
-                    $timePrjDivDtls.append($timePrjDivOvw);
-                    $timePrjDiv.append($timePrjDivDtls);
-                    $timePrjLi.append($timePrjDiv);
-                    console.log($timePrjLi);
-                })
-                .catch(function(error) {
-                    console.log(error);
-                })
-            })
-            .then( function() {
-                // Append the project to the list
-                $portTimelineUl.append($timePrjLi);
-            })
-            .catch(function(error) {
-                console.log(error);
-            })
-        });
-    })
-    .then( function () {
+            await getTopicData(requestUrl);
+            console.log(topicData);
+    
+            topicData.names.forEach(topic => {
+                let $timePrjDivOvwTopicS = $("<span>");
+                $timePrjDivOvwTopicS.addClass("badge blue white-text");
+                $timePrjDivOvwTopicS.text(topic);
+                $timePrjDivOvwDivTopic.append($timePrjDivOvwTopicS);
+            });
+
+            $timePrjDivOvw.append($timePrjDivOvwDivTopic);
+
+            // Append the details to the project list item
+            $timePrjDivDtls.append($timePrjDivOvw);
+            $timePrjDiv.append($timePrjDivDtls);
+            $timePrjLi.append($timePrjDiv);
+
+            // Append the project to the list
+            $portTimelineUl.append($timePrjLi);
+        }
+        
         // Append the portfolio timeline to the page
         $portTimelineDiv.append($portTimelineUl);
         $("main").append($portTimelineDiv);
-    })
-    .catch(function(error) {
-        console.log(error);
-    })
+    }
+
+    getAPIData();
+
+    // // Get Github Pinned Repos
+    // let requestUrl = `https://gh-pinned-repos-5l2i19um3.vercel.app/?username=${githubUsername}`;
+
+    // fetch(requestUrl)
+    // .then(handleAPIErrors)
+    // .then(function (response) {
+    //     return response.json();
+    // })
+    // .then(function (userData) {
+    //     userData.forEach(repo => {
+    //         // Get Github Repo Details
+    //         requestUrl = `https://api.github.com/repos/avidrunner87/${repo.repo}`;
+
+    //         fetch(requestUrl)
+    //         .then(handleAPIErrors)
+    //         .then(function (response) {
+    //             return response.json();
+    //         })
+    //         .then(function (repoData) {
+    //             console.log(repoData);
+
+    //             var $timePrjLi = $("<li>");
+    //             $timePrjLi.addClass("timelineProject no-padding");
+
+    //             var $timePrjDiv = $("<div>");
+    //             $timePrjDiv.addClass("row");
+
+    //             var $timePrjDivDate = $("<div>");
+    //             $timePrjDivDate.addClass("col s12 l1 timelineProjectDate");
+    //             $timePrjDivDate.text(dayjs(repoData.created_at).format("YYYY MMM").toUpperCase());
+
+    //             $timePrjDiv.append($timePrjDivDate);
+
+    //             var $timePrjDivDtls = $("<div>");
+    //             $timePrjDivDtls.addClass("col row s12 l11 timelineProjectDetails");
+
+    //             var $timePrjDivOvw = $("<div>");
+    //             $timePrjDivOvw.addClass("col s12 l5 timelineProjectOverview");
+
+    //             var $timePrjDivOvwTitle = $("<h5>");
+    //             $timePrjDivOvwTitle.append(titleCase(repoData.name));
+
+    //             var $timePrjDivOvwAppA = $("<a>");
+    //             $timePrjDivOvwAppA.addClass("waves-effect waves-light btn-small app-launch");
+    //             $timePrjDivOvwAppA.text("Launch App");
+
+    //             var $timePrjDivOvwAppI = $("<i>");
+    //             $timePrjDivOvwAppI.addClass("material-icons left");
+    //             $timePrjDivOvwAppI.text("launch");
+                
+    //             $timePrjDivOvwAppA.append($timePrjDivOvwAppI);
+    //             $timePrjDivOvwTitle.append($timePrjDivOvwAppA);
+
+    //             var $timePrjDivOvwDes = $("<p>");
+    //             $timePrjDivOvwDes.text(repoData.description);
+
+    //             $timePrjDivOvw.append($timePrjDivOvwTitle);
+    //             $timePrjDivOvw.append($timePrjDivOvwDes);
+
+    //             var $timePrjDivOvwDivTopic = $("<div>");
+    //             $timePrjDivOvwDivTopic.addClass("timelineProjectTopics");
+
+    //             // Get Github Repo Topics Content
+    //             requestUrl = `https://api.github.com/repos/avidrunner87/${repoData.name}/topics`;
+
+    //             fetch(requestUrl, {
+    //                 headers: {
+    //                     "Accept": "application/vnd.github.mercy-preview+json"
+    //                 }
+    //             })
+    //             .then(handleAPIErrors)
+    //             .then(function (response) {
+    //                 return response.json();
+    //             })
+    //             .then(function (topicData) {
+    //                 console.log(topicData);
+
+    //                 topicData.names.forEach(topic => {
+    //                     var $timePrjDivOvwTopicS = $("<span>");
+    //                     $timePrjDivOvwTopicS.addClass("badge blue white-text");
+    //                     $timePrjDivOvwTopicS.text(topic);
+    //                     $timePrjDivOvwDivTopic.append($timePrjDivOvwTopicS);
+    //                 });
+    //             })
+    //             .then( function() {
+    //                 $timePrjDivOvw.append($timePrjDivOvwDivTopic);
+
+    //                 // Append the details to the project list item
+    
+    //                 $timePrjDivDtls.append($timePrjDivOvw);
+    //                 $timePrjDiv.append($timePrjDivDtls);
+    //                 $timePrjLi.append($timePrjDiv);
+    //                 console.log($timePrjLi);
+    //             })
+    //             .catch(function(error) {
+    //                 console.log(error);
+    //             })
+    //         })
+    //         .then( function() {
+    //             // Append the project to the list
+    //             $portTimelineUl.append($timePrjLi);
+    //         })
+    //         .catch(function(error) {
+    //             console.log(error);
+    //         })
+    //     });
+    // })
+    // .then( function () {
+    //     // Append the portfolio timeline to the page
+    //     $portTimelineDiv.append($portTimelineUl);
+    //     $("main").append($portTimelineDiv);
+    // })
+    // .catch(function(error) {
+    //     console.log(error);
+    // })
 
 
 
