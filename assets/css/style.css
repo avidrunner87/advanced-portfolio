@@ -89,13 +89,19 @@ main {
 
 .timelineProjectTopics{
   margin: 10px 0;
+  overflow-wrap: break-word;
 }
-span.badge {
+span.portfolioBadge {
   margin-left: unset;
   margin-right: 6px;
   float: unset;
   padding: 3px 10px;
   border-radius: 9999rem;
+  line-height: 30px;
+}
+
+span.portfolioBadge:after {
+  content: " ";
 }
 
 
@@ -109,7 +115,7 @@ span.badge {
 }
 
 /* Change appearance of portfolio timeline with screen size */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 993px) {
   .timelineProjectDate:after {
     content: " ";
     position: relative;
