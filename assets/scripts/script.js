@@ -15,6 +15,15 @@ function init() {
     // Determine if a subsection of the profile should be loaded
     let hash = window.location.hash;
 
+    renderContent(hash);
+}
+
+// Create the main and title
+function renderMain() {
+}
+
+// Load the page content
+function renderContent(hash) {
     switch (hash) {
         case "#about":
             console.log("Load About");
@@ -28,12 +37,6 @@ function init() {
             console.log("Load Home");
             break;
     }
-}
-
-// Create the main and title
-function renderMain() {
-
-
 }
 
 function renderHome() {
@@ -197,20 +200,8 @@ $("#sideNavLeft").click(function(event) {
     if ($(event.target).is("a") === true || $(event.target).parent().is("a") === true) {
         const id = event.target.id || event.target.parentNode.id;
         if(id != "") {
-            switch (id) {
-                case "homeMe":
-                    renderHome();
-                    break;
-                case "aboutMe":
-                    renderAboutMe();
-                    break;
-                case "portfolioMe":
-                    renderPortfolio();
-                    break;
-
-                default:
-                    break;
-            }
+            renderContent(`#${id}`);
         }
     }
 })
+
