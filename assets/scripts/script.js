@@ -111,8 +111,6 @@ function renderPortfolio() {
 
     $("main").append($divSpinner);
 
-
-
     // Add initial portfolio timeline DIV and UL
     let $portTimelineDiv = $("<div>");
     $portTimelineDiv.addClass("navbar-fixed portfolioTimeline");
@@ -264,6 +262,8 @@ function renderPortfolio() {
         $portTimelineDiv.append($portTimelineUl);
         $("main").append($portTimelineDiv);
         $(".loadingSpinner").remove();
+
+        formatAppLaunchBtn();
     }
 
     getAPIData();
@@ -306,47 +306,28 @@ function titleCase(string) {
     }).join(' ');  
 }
 
-function testGitHubAPIs() {
-    let requestUrl = "";
+function formatAppLaunchBtn() {
+    // Create the icon
+    let $timePrjDivOvwAppI = $("<i>");
+    $timePrjDivOvwAppI.text("launch");
 
-    // Get Github Pinned Repos
-    requestUrl = "https://gh-pinned-repos-5l2i19um3.vercel.app/?username=avidrunner87";
+    if ($(window).width() < 600 && window.location.hash === "#portfolio") {
+        $timePrjDivOvwAppI.addClass("material-icons");
 
-    fetch(requestUrl)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        
-        console.log(data);
-    })
+        $(".app-launch").addClass("btn-floating");
+        $(".app-launch").text("");
 
-    // Get Github All Repos
-    requestUrl = "https://api.github.com/users/avidrunner87/repos";
+        $(".app-launch").append($timePrjDivOvwAppI);
 
-    fetch(requestUrl)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        
-        console.log(data);
-    })
+    } else {
+        $timePrjDivOvwAppI.addClass("material-icons left");
 
-    // Get Github Repo Topics Content
-    requestUrl = "https://api.github.com/repos/avidrunner87/daily-planner/topics";
+        $(".app-launch").removeClass("btn-floating");
+        $(".app-launch").text("Launch App");
 
-    fetch(requestUrl, {
-        headers: {
-            "Accept": "application/vnd.github.mercy-preview+json"
-        }
-    })
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data);
-    })
+        $(".app-launch").append($timePrjDivOvwAppI);
+
+    }
 }
 
 // Calls init to retrieve data and render it to the page on load
@@ -362,3 +343,5 @@ $("#sideNavLeft").click(function(event) {
     }
 })
 
+// Change the format of the App Launch Buttons
+$(window).on("resize", formatAppLaunchBtn);
