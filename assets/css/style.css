@@ -85,7 +85,11 @@ main {
   margin: 25px;
 }
 
-.timelineProjectTopics{
+.timelineProjectDate {
+  padding-left: unset !important;
+}
+
+.timelineProjectTopics {
   margin: 10px 0;
   overflow-wrap: break-word;
 }
@@ -107,7 +111,6 @@ span.portfolioBadge {
 span.portfolioBadge:after {
   content: " ";
 }
-
 
 /* Formatting for changes in screen size */
 
