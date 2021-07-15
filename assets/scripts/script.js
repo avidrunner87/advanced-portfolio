@@ -12,24 +12,22 @@ function init() {
     $('.sidenav').sidenav();
     $('.collapsible').collapsible();
 
-    // Determine if a subsection of the profile should be loaded
-    let hash = window.location.hash;
-
-    renderContent(hash);
-}
-
-// Create the main and title
-function renderMain() {
+    renderContent();
 }
 
 // Load the page content
-function renderContent(hash) {
+function renderContent(id) {
+    // Determine if a subsection of the profile should be loaded
+    const hash = id || window.location.hash;
+
+    console.log(hash);
+
     switch (hash) {
         case "#about":
             $("#about").closest("li").addClass("active");
             $("#home").closest("li").removeClass("active");
             $("#portfolio").closest("li").removeClass("active");
-            $("#pageTitle").text("About Me");
+            $("#pageTitle").text("About");
             renderAboutMe();
             break;
 
@@ -54,6 +52,30 @@ function renderContent(hash) {
 function renderHome() {
     // Clear the page content
     $("main").html("");
+
+    let $homeDiv = $("<div>");
+    $homeDiv.addClass("navbar-fixed");
+
+    let $phraseH1 = $("<h1>");
+    $phraseH1.html("Hi! I\'m Andrew,<br>a Nerd at Heart");
+
+    let $storyA = $("<a>");
+    $storyA.attr("href", "#about");
+    $storyA.attr("onclick", "renderContent(\"#about\");");
+    $storyA.addClass("waves-effect waves-light btn-large home-links");
+    $storyA.text("My Story");
+
+    let $portfolioA = $("<a>");
+    $portfolioA.attr("href", "#portfolio");
+    $portfolioA.attr("onclick", "renderContent(\"#portfolio\");");
+    $portfolioA.addClass("waves-effect waves-light btn-large home-links");
+    $portfolioA.text("My Work");
+
+    $homeDiv.append($phraseH1);
+    $homeDiv.append($storyA);
+    $homeDiv.append($portfolioA);
+    $("main").append($homeDiv);
+
 }
 
 function renderAboutMe() {
@@ -182,7 +204,7 @@ function renderPortfolio() {
             $timePrjDiv.addClass("row");
 
             let $timePrjDivDate = $("<div>");
-            $timePrjDivDate.addClass("col s12 l1 timelineProjectDate");
+            $timePrjDivDate.addClass("col s12 l1 timelineProjectDate text-italic");
             $timePrjDivDate.text(dayjs(repo.created_at).format("YYYY MMM").toUpperCase());
 
             $timePrjDiv.append($timePrjDivDate);

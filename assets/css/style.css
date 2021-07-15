@@ -68,6 +68,10 @@ main {
   margin: 20px;
 }
 
+.home-links {
+  margin: 0 10px;
+}
+
 .text-italic {
   font-style: italic;
 }
