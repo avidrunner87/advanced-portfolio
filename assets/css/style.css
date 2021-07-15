@@ -87,6 +87,12 @@ nav.navbar {
   margin: 0 10px;
 }
 
+/* Formatting for the About Me page */
+.about-Me-Title {
+  font-family: 'Gochi Hand', cursive;
+}
+
+/* Formatting for the Portfolio page */
 .text-italic {
   font-style: italic;
 }

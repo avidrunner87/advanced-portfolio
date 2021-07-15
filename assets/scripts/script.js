@@ -99,6 +99,66 @@ function renderHome() {
 function renderAboutMe() {
     // Clear the page content
     $("main").html("");
+
+    let $fullPageDiv = $("<div>");
+    $fullPageDiv.addClass("navbar-fixed page-Margin");
+
+    let $pageTitle = $("<h1>");
+    $pageTitle.addClass("about-Me-Title");
+    $pageTitle.text("Me talking about myself...");
+    $fullPageDiv.append($pageTitle);
+
+    let $aboutMeText00 = $("<p>");
+    $aboutMeText00.text("I have an amazing family that surprise me every day!")
+    $fullPageDiv.append($aboutMeText00);
+
+    let $aboutMeText01 = $("<p>");
+    $aboutMeText01.text("I live in Houston, but I am not a native Houstonian.")
+    $fullPageDiv.append($aboutMeText01);
+
+    let $aboutMeText02 = $("<p>");
+    $aboutMeText02.text("I enjoy the Houston rodeo, but I don\'t own any boots. 😲")
+    $fullPageDiv.append($aboutMeText02);
+
+    let $aboutMeText03 = $("<p>");
+    $aboutMeText03.text("I've lived inside and outside the loop.")
+    $fullPageDiv.append($aboutMeText03);
+
+    let $aboutMeText04 = $("<p>");
+    $aboutMeText04.text("I am a fan of the Astros, except when they play the Cardinals.")
+    $fullPageDiv.append($aboutMeText04);
+
+    let $pageProfession = $("<h3>");
+    $pageProfession.addClass("about-Me-Title");
+    $pageProfession.text("professionally...");
+    $fullPageDiv.append($pageProfession);
+
+    let $aboutMeText05 = $("<p>");
+    $aboutMeText05.text("Most of my career has been in oil and gas, but I have also worked in power and utilities and telecom.")
+    $fullPageDiv.append($aboutMeText05);
+
+    let $aboutMeText06 = $("<p>");
+    $aboutMeText06.text("I have had the opportunity to travel around the world for work.")
+    $fullPageDiv.append($aboutMeText06);
+
+    let $aboutMeText07 = $("<p>");
+    $aboutMeText07.text("I made the mental mindset shift necessary for Agile.")
+    $fullPageDiv.append($aboutMeText07);
+
+    let $aboutMeText08 = $("<p>");
+    $aboutMeText08.text("The projects I have been on range from acquisitions and divestments to digital transformation, solution development, big data, and beyond.")
+    $fullPageDiv.append($aboutMeText08);
+
+    let $aboutMeText09 = $("<p>");
+    $aboutMeText09.text("My strengths are at the intersection of business and technology.")
+    $fullPageDiv.append($aboutMeText09);
+
+    let $pageContact = $("<h4>");
+    $pageContact.addClass("about-Me-Title");
+    $pageContact.text("...reach out if you would like to know more!");
+    $fullPageDiv.append($pageContact);
+
+    $("main").append($fullPageDiv);
 }
 
 function renderPortfolio() {
