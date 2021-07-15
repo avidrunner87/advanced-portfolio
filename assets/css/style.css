@@ -21,9 +21,7 @@ body {
   height: 200px !important;
 }
 
-.nav-background p {
-  position: relative;
-  left: calc(50% - 4em);
+.nav-background span {
   margin: unset;
   font-size: 26px !important;
   line-height: 40px !important;
