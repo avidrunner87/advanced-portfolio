@@ -53,29 +53,47 @@ function renderHome() {
     // Clear the page content
     $("main").html("");
 
-    let $homeDiv = $("<div>");
-    $homeDiv.addClass("navbar-fixed");
+    let $fullPageDiv = $("<div>");
+    $fullPageDiv.addClass("FullPageBackground navbar-fixed");
 
-    let $phraseH1 = $("<h1>");
-    $phraseH1.html("Hi! I\'m Andrew,<br>a Nerd at Heart");
+    let $homeCarouselDiv = $("<div>");
+    $homeCarouselDiv.addClass("carousel carousel-slider center");
+
+    let $homeCenteredDiv = $("<div>");
+    $homeCenteredDiv.addClass("carousel-fixed-item center");
 
     let $storyA = $("<a>");
     $storyA.attr("href", "#about");
     $storyA.attr("onclick", "renderContent(\"#about\");");
-    $storyA.addClass("waves-effect waves-light btn-large home-links");
+    $storyA.addClass("btn-large waves-effect white black-text darken-text-2 home-links");
     $storyA.text("My Story");
 
     let $portfolioA = $("<a>");
     $portfolioA.attr("href", "#portfolio");
     $portfolioA.attr("onclick", "renderContent(\"#portfolio\");");
-    $portfolioA.addClass("waves-effect waves-light btn-large home-links");
+    $portfolioA.addClass("btn-large waves-effect white black-text darken-text-2 home-links");
     $portfolioA.text("My Work");
 
-    $homeDiv.append($phraseH1);
-    $homeDiv.append($storyA);
-    $homeDiv.append($portfolioA);
-    $("main").append($homeDiv);
 
+    $homeCenteredDiv.append($storyA);
+    $homeCenteredDiv.append($portfolioA);
+    $homeCarouselDiv.append($homeCenteredDiv);
+
+    let $homeCarouselItm1 = $("<div>");
+    $homeCarouselItm1.addClass("carousel-item white-text");
+
+    let $phraseH1 = $("<h1>");
+    $phraseH1.html("Hi! I\'m Andrew,<br>and I enjoy the journey.");
+
+    $homeCarouselItm1.append($phraseH1);
+    $homeCarouselDiv.append($homeCarouselItm1);
+    $fullPageDiv.append($homeCarouselDiv);
+    $("main").append($fullPageDiv);
+
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+    });
 }
 
 function renderAboutMe() {
@@ -89,13 +107,13 @@ function renderPortfolio() {
 
     // Add portfolio intro
     let $portfolioIntro = $("<div>");
-    $portfolioIntro.addClass("navbar-fixed");
+    $portfolioIntro.addClass("navbar-fixed page-Margin");
     $portfolioIntro.text("Please take a look at my work below. Unless stated otherwise, all the work was completed by me.")
     $("main").append($portfolioIntro);
 
     // Add Page Loading Icon
     let $divSpinner = $("<div>");
-    $divSpinner.addClass("navbar-fixed loadingSpinner");
+    $divSpinner.addClass("navbar-fixed loadingSpinner page-Margin");
 
     let $divPreLoader = $("<div>");
     $divPreLoader.addClass("preloader-wrapper active");
@@ -135,7 +153,7 @@ function renderPortfolio() {
 
     // Add initial portfolio timeline DIV and UL
     let $portTimelineDiv = $("<div>");
-    $portTimelineDiv.addClass("navbar-fixed portfolioTimeline");
+    $portTimelineDiv.addClass("navbar-fixed portfolioTimeline page-Margin");
 
     let $portTimelineUl = $("<ul>");
 

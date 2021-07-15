@@ -11,6 +11,7 @@ body {
   background-image: url("../images/nav-background.jpg");
   background-size: cover;
   background-position: center;
+  height: 310px;
 }
 
 .nav-background img {
@@ -19,6 +20,10 @@ body {
   left: calc(50% - 120px);
   width: 200px !important;
   height: 200px !important;
+}
+
+.nav-background p {
+  margin-bottom: unset;
 }
 
 .nav-background span {
@@ -64,8 +69,18 @@ nav.navbar {
 }
 
 /* Formatting for the main content */
-main {
-  margin: 20px;
+.page-Margin {
+  padding: 20px;
+}
+
+.FullPageBackground {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: calc(100% - 64px);
+  width: calc(100%);
+  background-image: url("../images/home-background.jpg");
 }
 
 .home-links {
