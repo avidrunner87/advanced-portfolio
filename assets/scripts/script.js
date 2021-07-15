@@ -122,6 +122,7 @@ function renderPortfolio() {
         let userData = [];
         let repoData = [];
         let reposData = [];
+        let contributorData = [];
         let topicData = [];
 
         async function getUserData(requestUrl) {
@@ -139,6 +140,12 @@ function renderPortfolio() {
             // read our JSON
             let response = await fetch(requestUrl);
             repoData = await response.json();
+        }
+
+        async function getContributorData(requestUrl) {
+            // read our JSON
+            let response = await fetch(requestUrl);
+            contributorData = await response.json();
         }
 
         async function getTopicData(requestUrl) {
@@ -208,6 +215,37 @@ function renderPortfolio() {
             $timePrjDivOvw.append($timePrjDivOvwTitle);
             $timePrjDivOvw.append($timePrjDivOvwDes);
 
+            // Get Github Repo Contributors
+            requestUrl = `https://api.github.com/repos/${githubUsername}/${repo.name}/contributors`
+
+            await getContributorData(requestUrl);
+
+            if (contributorData.length > 1) {
+                let $timePrjDivCon = $("<div>");
+                $timePrjDivCon.addClass("valign-wrapper");
+
+                $timePrjDivCon.html("Additional Contributors:&nbsp;&nbsp;&nbsp;")
+
+                contributorData.forEach(contributor => {
+                    if (contributor.login != githubUsername) {
+                        let $timePrjDivConA = $("<a>");
+                        $timePrjDivConA.attr("href", contributor.html_url);
+                        $timePrjDivConA.attr("target", "_blank");
+
+                        let $timePrjDivConImg = $("<img>");
+                        $timePrjDivConImg.attr("src", contributor.avatar_url);
+                        $timePrjDivConImg.attr("alt", contributor.login);
+                        $timePrjDivConImg.attr("title", contributor.login);
+                        $timePrjDivConImg.addClass("circle app-contributor");
+
+                        $timePrjDivConA.append($timePrjDivConImg);
+                        $timePrjDivCon.append($timePrjDivConA);
+                    }
+                });
+
+                $timePrjDivOvw.append($timePrjDivCon);
+            }
+
             let $timePrjDivOvwDivTopic = $("<div>");
             $timePrjDivOvwDivTopic.addClass("timelineProjectTopics");
 
@@ -235,7 +273,6 @@ function renderPortfolio() {
 
             // Append the details to the project list item
             $timePrjDivDtls.append($timePrjDivOvw);
-
 
             let $timePrjDivImgs = $("<div>");
             $timePrjDivImgs.addClass("col s12 l7 timelineProjectImages");
@@ -267,29 +304,6 @@ function renderPortfolio() {
     }
 
     getAPIData();
-}
-
-// Get user data from Github
-function getUserData() {
-    // Get Github Pinned Repos
-    let requestUrl = `https://gh-pinned-repos-5l2i19um3.vercel.app/?username=${githubUsername}`;
-
-    return fetch(requestUrl)
-    .then(handleAPIErrors)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (userData) {
-        let names = []
-        userData.forEach(repo => {
-            names.push(repo.repo);
-        });
-
-        return names;
-    })
-    .catch(function(error) {
-        console.log(error);
-    })
 }
 
 // Handle errors from API calls

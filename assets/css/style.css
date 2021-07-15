@@ -89,6 +89,12 @@ main {
   margin: 10px 0;
   overflow-wrap: break-word;
 }
+
+.app-contributor {
+  width: 40px !important;
+  height: 40px !important;
+}
+
 span.portfolioBadge {
   margin-left: unset;
   margin-right: 6px;
