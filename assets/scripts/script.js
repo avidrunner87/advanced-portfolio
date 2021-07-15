@@ -68,7 +68,7 @@ function renderPortfolio() {
     // Add portfolio intro
     let $portfolioIntro = $("<div>");
     $portfolioIntro.addClass("navbar-fixed");
-    $portfolioIntro.text("Please take a look at my work below. Unless stated, all the work was completed by me.")
+    $portfolioIntro.text("Please take a look at my work below. Unless stated otherwise, all the work was completed by me.")
     $("main").append($portfolioIntro);
 
     // Add Page Loading Icon
@@ -279,7 +279,7 @@ function renderPortfolio() {
 
             let $timePrjImgO = $("<img>");
             $timePrjImgO.addClass("responsive-img");
-            $timePrjImgO.attr("src", `${repo.homepage}assets/images/website_mockup.gif`)
+            $timePrjImgO.attr("src", `${repo.homepage}assets/images/screenshots/mockup.gif`)
             $timePrjDivImgs.append($timePrjImgO);
 
             $timePrjDivDtls.append($timePrjDivImgs);
