@@ -72,7 +72,7 @@ I **WANT** learn more about you<br>
     3. Links to your Github and portfolio
 
 ## Licenses
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/avidrunner87/small-talk/blob/main/LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/avidrunner87/advanced-portfolio/blob/main/LICENSE.md)
 
 ## Technologies
 ![HTML](https://img.shields.io/static/v1?label=html&message=28.2%&color=red)
