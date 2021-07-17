@@ -109,7 +109,7 @@ function renderAboutMe() {
     $fullPageDiv.append($pageTitle);
 
     let $aboutMeText00 = $("<p>");
-    $aboutMeText00.text("I have an amazing family that surprise me every day!")
+    $aboutMeText00.text("I have an amazing family that surprises me every day!")
     $fullPageDiv.append($aboutMeText00);
 
     let $aboutMeText01 = $("<p>");
