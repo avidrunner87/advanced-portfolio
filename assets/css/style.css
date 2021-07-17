@@ -92,6 +92,11 @@ nav.navbar {
   font-family: 'Gochi Hand', cursive;
 }
 
+.cert-Badge {
+  width: 80px;
+  margin-right: 10px;
+}
+
 /* Formatting for the Portfolio page */
 .text-italic {
   font-style: italic;

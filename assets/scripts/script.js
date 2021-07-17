@@ -153,6 +153,47 @@ function renderAboutMe() {
     $aboutMeText09.text("My strengths are at the intersection of business and technology.")
     $fullPageDiv.append($aboutMeText09);
 
+    let $pageCertifications = $("<h5>");
+    $pageCertifications.addClass("about-Me-Title");
+    $pageCertifications.text("Certifications");
+    $fullPageDiv.append($pageCertifications);
+
+    let $aboutMeCert01A = $("<a>");
+    $aboutMeCert01A.attr("href", "https://www.credly.com/badges/b0e067a1-68c7-487d-b6ac-2d85c799fce6/public_url");
+    $aboutMeCert01A.attr("target", "_blank");
+
+    let $aboutMeCert01 = $("<img>")
+    $aboutMeCert01.attr("src", "./assets/images/SAFe-SPC.png");
+    $aboutMeCert01.attr("title", "SAFe SPC Badge");
+    $aboutMeCert01.attr("alt", "SAFe SPC Badge");
+    $aboutMeCert01.addClass("cert-Badge");
+    $aboutMeCert01A.append($aboutMeCert01);
+    $fullPageDiv.append($aboutMeCert01A);
+
+    let $aboutMeCert02A = $("<a>");
+    $aboutMeCert02A.attr("href", "https://www.credly.com/badges/6134b364-3433-4d81-aa70-9e800d79e500/public_url");
+    $aboutMeCert02A.attr("target", "_blank");
+
+    let $aboutMeCert02 = $("<img>")
+    $aboutMeCert02.attr("src", "./assets/images/SAFe-LPM.png");
+    $aboutMeCert02.attr("title", "SAFe LPM Badge");
+    $aboutMeCert02.attr("alt", "SAFe LPM Badge");
+    $aboutMeCert02.addClass("cert-Badge");
+    $aboutMeCert02A.append($aboutMeCert02);
+    $fullPageDiv.append($aboutMeCert02A);
+
+    let $aboutMeCert03A = $("<a>");
+    $aboutMeCert03A.attr("href", "https://www.credly.com/badges/50618f9f-3c11-4884-8df5-ed211c00e37f/public_url");
+    $aboutMeCert03A.attr("target", "_blank");
+
+    let $aboutMeCert03 = $("<img>")
+    $aboutMeCert03.attr("src", "./assets/images/EY-Platinum.png");
+    $aboutMeCert03.attr("title", "EY Platinum Badge");
+    $aboutMeCert03.attr("alt", "EY Platinum Badge");
+    $aboutMeCert03.addClass("cert-Badge");
+    $aboutMeCert03A.append($aboutMeCert03);
+    $fullPageDiv.append($aboutMeCert03A);
+
     let $pageContact = $("<h4>");
     $pageContact.addClass("about-Me-Title");
     $pageContact.text("...reach out if you would like to know more!");
